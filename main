@@ -1,0 +1,72 @@
+class Student:
+    def __init__(self, name, age, grade):
+        self.name = name
+        self.age = age
+        self.grade = grade
+
+class StudentManagementSystem:
+    def __init__(self):
+        self.students = []
+    
+    def add_student(self, name, age, grade):
+        student = Student(name, age, grade)
+        self.students.append(student)
+        print(f'Student {name} added to the system.')
+    
+    def remove_student(self, name):
+        for student in self.students:
+            if student.name == name:
+                self.students.remove(student)
+                print(f'Student {name} removed from the system.')
+                return
+        
+        print(f'Student {name} not found in the system.')
+    
+    def find_student(self, name):
+        for student in self.students:
+            if student.name == name:
+                print(f'Student Details:')
+                print(f'Name: {student.name}')
+                print(f'Age: {student.age}')
+                print(f'Grade: {student.grade}')
+                return
+        
+        print(f'Student {name} not found in the system.')
+    
+    def view_students(self):
+        if self.students:
+            print('Student List:')
+            for student in self.students:
+                print(f'Name: {student.name}, Age: {student.age}, Grade: {student.grade}')
+        else:
+            print('No students found in the system.')
+
+student_system = StudentManagementSystem()
+
+while True:
+    print('\nStudent Management System')
+    print('1. Add student')
+    print('2. Remove student')
+    print('3. Find student')
+    print('4. View students')
+    print('5. Exit')
+
+    choice = input('Select an option: ')
+
+    if choice == '1':
+        name = input('Enter the student name: ')
+        age = int(input('Enter the student age: '))
+        grade = input('Enter the student grade: ')
+        student_system.add_student(name, age, grade)
+    elif choice == '2':
+        name = input('Enter the student name to remove: ')
+        student_system.remove_student(name)
+    elif choice == '3':
+        name = input('Enter the student name to find: ')
+        student_system.find_student(name)
+    elif choice == '4':
+        student_system.view_students()
+    elif choice == '5':
+        break
+    else:
+        print('Invalid choice. Please try again.')
